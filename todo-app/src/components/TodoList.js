@@ -7,17 +7,25 @@ export default class TodoList extends Component {
     return (
       <Container className="todo-container d-flex justify-content-center">
         <ul>
-          <li className="List-group-item text-capitalize d-flex justify-content-between">
-            <div>title</div>
+         {this.props.items.map(item => {
+           return(
+            <li key={item.id} title={item.title} handleDelete={()=>this.props.handleDelete(item.id)}
+            handleEdit={()=>this.props.handleEdit(item.id)} 
+            className="List-group-item text-capitalize d-flex justify-content-between mb-2">
+            <div>{item.title}</div>
             <div className="todo-icon">
-              <span className="mx-2 edit">
+              <span onClick={()=>this.props.handleEdit(item.id)} className="mx-2 edit">
                 <FaEdit />
               </span>
-              <span>
+              <span onClick={()=>this.props.handleDelete(item.id)} >
                 <FaTrashAlt className="trash" />
               </span>
             </div>
           </li>
+           )
+         })} 
+         <button onClick={this.props.clearList} 
+         className='clearAll'>Clear List</button>
         </ul>
       </Container>
     )

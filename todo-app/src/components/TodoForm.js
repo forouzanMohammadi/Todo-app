@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { Container } from 'react-bootstrap'
-import { FaPlus } from 'react-icons/fa'
+import { FaPlus, FaEdit } from 'react-icons/fa'
 
-export default class TodoForm extends Component {
 
+export default class Tododiv extends Component {
+ 
   render() {
     return (
       <Container>
-        <form className="d-flex justify-content-center">
+        <form onSubmit={this.props.handleSubmit} className="d-flex justify-content-center">
             <input type="text" placeholder="Add your new todo..." 
-            value={this.props.value}
+            value={this.props.item}
             onChange={this.props.handleChange} 
             />
-           <button className='btnsubmit' type='submit'><FaPlus className="icon"/></button>
+           <button className='btnsubmit' type='submit'>{this.props.editItem ? <FaEdit /> : <FaPlus className="icon"/>}</button>
         </form>
       </Container>
     )
